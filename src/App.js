@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import { Suspense, useEffect } from 'react';
+import RenderNavigation from './components/renderNavigation/renderNavigation';
+import Login from './components/login/Login';
+import { useDispatch, useSelector } from 'react-redux';
+import Register from './components/register/Register';
+import authOperations from './redux/auth/auth-operation';
+import authSelectors from './redux/auth/auth-selector';
+import RenderList from './components/renderList/renderList';
+import s from './App.module.css';
+export default function App() {
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
 
-function App() {
+  useEffect(() => {
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <RenderNavigation />
+      <div className={s.list}>
+        <Suspense fallback={<RenderNavigation />}>
+          <Routes>
+            <Route path="/register" element={!isLoggedIn && <Register />} />
+            <Route path="/login" element={!isLoggedIn && <Login />} />
+          </Routes>
+        </Suspense>
+        {isLoggedIn && <RenderList />}
+      </div>
     </div>
   );
 }
-
-export default App;

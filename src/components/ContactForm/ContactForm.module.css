@@ -1,0 +1,44 @@
+.blokc {
+  display: grid;
+  justify-content: center;
+}
+
+.blok {
+  display: grid;
+  justify-content: center;
+  padding: 30px;
+  width: 300px;
+  background: yellowgreen;
+  border-radius: 7px;
+  box-shadow: 0px 1px 3px rgb(0 0 0 / 25%), 0px 1px 1px rgb(0 0 0 / 14%),
+    7px 7px 1px rgb(0 0 0 / 20%);
+}
+
+.title {
+  margin-top: 0px;
+  text-align: center;
+}
+
+.form {
+  display: table-caption;
+  border: 1px solid black;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  grid-gap: 10px;
+  gap: 10px;
+  width: 250px;
+}
+
+.label {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  grid-gap: 5px;
+  gap: 5px;
+}
+
+.btn {
+  margin-top: 20px;
+  width: 250px;
+}
