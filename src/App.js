@@ -23,7 +23,7 @@ export default function App() {
         <Suspense fallback={<RenderNavigation />}>
           <Routes>
             <Route path="/register" element={!isLoggedIn && <Register />} />
-            <Route path="/login" element={!isLoggedIn && <Login />} />
+            <Route exact path="/login" element={!isLoggedIn && <Login />} />
           </Routes>
         </Suspense>
         {isLoggedIn && <RenderList />}
